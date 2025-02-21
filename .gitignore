@@ -80,3 +80,38 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+
+# Directorios y archivos generados automáticamente
+build/
+.android/
+.ios/
+.macos/
+windows/
+web/
+linux/
+
+# Dependencias y cachés
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+pubspec.lock
+
+# Configuración del IDE y sistema
+.idea/
+.vscode/
+*.iml
+
+# Archivos de logs y depuración
+*.log
+
+# Claves y credenciales
+key.jks
+*.keystore
+*.p12
+
+# Archivos específicos del sistema operativo
+.DS_Store
+Thumbs.db
