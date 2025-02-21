@@ -18,7 +18,7 @@ class RouteGenerator {
       case AppRoutes.emotionDetail:
         if (args is String) {
           return MaterialPageRoute(
-            builder: (_) => EmocionDetalleScreen(emocion: args),
+            builder: (_) => EmocionDetalleScreen(emocionSeleccionada: args),
           );
         }
         return _errorRoute();

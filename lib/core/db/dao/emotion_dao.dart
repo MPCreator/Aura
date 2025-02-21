@@ -6,7 +6,7 @@ class EmocionesDao {
     return await db.insert('Emociones', emocion);
   }
 
-  Future<List<Map<String, dynamic>>> getEmociones() async {
+  Future<List<Map<String, dynamic>>> getAllEmociones() async {
     final db = await AppDatabase().database;
     return await db.query('Emociones');
   }
