@@ -6,4 +6,5 @@ abstract class EmocionesRepository {
   Future<void> insertEmocion(Emocion emocion);
   Future<void> updateEmocion(Emocion emocion);
   Future<void> deleteEmocion(int idEmocion);
+  Future<List<String>> getEmocionesOpciones();
 }

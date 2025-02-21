@@ -38,4 +38,9 @@ class EmocionesRepositoryImpl implements EmocionesRepository {
   Future<void> deleteEmocion(int idEmocion) async {
     await emocionesLocalDataSource.deleteEmocion(idEmocion);
   }
+
+  @override
+  Future<List<String>> getEmocionesOpciones() async {
+    return ['Enojo', 'Tristeza', 'Calma', 'Felicidad', 'Ansiedad'];
+  }
 }
