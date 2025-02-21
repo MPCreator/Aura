@@ -16,7 +16,7 @@ class EmocionesLocalDataSourceImpl implements EmocionesLocalDataSource {
 
   @override
   Future<List<EmocionModel>> getAllEmociones() async {
-    final result = await emocionesDao.getEmociones();
+    final result = await emocionesDao.getAllEmociones();
     return result.map((e) => EmocionModel.fromMap(e)).toList();
   }
 

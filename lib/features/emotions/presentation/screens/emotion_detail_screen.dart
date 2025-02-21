@@ -1,4 +1,7 @@
+import 'package:aura/core/routes/app_routes.dart';
 import 'package:aura/core/utils/emotion_gradient.dart';
+import 'package:aura/features/emotions/domain/entities/emotion.dart';
+import 'package:aura/features/emotions/domain/usecases/insert_emotion.dart';
 import 'package:aura/features/emotions/presentation/provider/emotions_ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:aura/core/theme/app_colors.dart';
@@ -8,15 +11,22 @@ import 'package:provider/provider.dart';
 import '../widgets/intensity_selector.dart';
 import '../widgets/areas_selector.dart';
 
-class EmocionDetalleScreen extends StatelessWidget {
-  final String emocion;
+class EmocionDetalleScreen extends StatefulWidget {
+  final String emocionSeleccionada;
 
-  const EmocionDetalleScreen({super.key, required this.emocion});
+  const EmocionDetalleScreen({super.key, required this.emocionSeleccionada});
 
   @override
+  State<EmocionDetalleScreen> createState() => EmocionDetalleScreenState();
+}
+
+class EmocionDetalleScreenState extends State<EmocionDetalleScreen> {
+  @override
   Widget build(BuildContext context) {
-    final List<Color> emotionGradient = getEmotionGradient(emocion);
-    final Color emotionPrimaryColor = getPrimaryGradientColor(emocion);
+    final List<Color> emotionGradient =
+        getEmotionGradient(widget.emocionSeleccionada);
+    final Color emotionPrimaryColor =
+        getPrimaryGradientColor(widget.emocionSeleccionada);
 
     return ChangeNotifierProvider(
       create: (_) => EmocionDetalleProvider(),
@@ -36,7 +46,7 @@ class EmocionDetalleScreen extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
             ),
             title: Text(
-              emocion,
+              widget.emocionSeleccionada,
               style: TextStyle(
                 color: emotionPrimaryColor,
                 fontSize: AppSizes.largeText(context),
@@ -64,18 +74,44 @@ class EmocionDetalleScreen extends StatelessWidget {
                     const AreasSelector(),
                     SizedBox(height: AppSizes.largeSpace(context)),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final provider = context.read<EmocionDetalleProvider>();
                         final intensidad = provider.intensidad;
                         final areas = provider.areasSeleccionadas;
                         final otro = provider.otroController.text;
 
-                        debugPrint("Emoción: $emocion");
-                        debugPrint("Intensidad: $intensidad");
-                        debugPrint("Áreas seleccionadas: $areas");
-                        debugPrint("Otro: $otro");
+                        // Obtener el ID del usuario
+                        final int idUsuario = 1;
 
-                        Navigator.pop(context);
+                        // Crear la emoción
+                        final emocion = Emocion(
+                          idUsuario: idUsuario,
+                          emocion: widget.emocionSeleccionada,
+                          intensidad: intensidad,
+                          categoria: areas.isNotEmpty || otro.isNotEmpty
+                              ? [...areas, otro].join(', ')
+                              : null,
+                        );
+
+                        final insertEmocion =
+                            Provider.of<InsertEmocion>(context, listen: false);
+
+                        // Guardar referencias necesarias antes del await
+                        final messenger = ScaffoldMessenger.of(context);
+                        final navigator = Navigator.pushNamed(
+                          context,
+                          AppRoutes.home,
+                        );
+
+                        if (!mounted) return;
+                        await insertEmocion.ejecutar(emocion);
+                        if (!mounted) return;
+
+                        messenger.showSnackBar(
+                          SnackBar(
+                              content: Text('Emoción insertada con éxito!')),
+                        );
+                        navigator;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: emotionPrimaryColor,
@@ -88,7 +124,7 @@ class EmocionDetalleScreen extends StatelessWidget {
                         "Aceptar",
                         style: TextStyle(color: AppColors.white),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

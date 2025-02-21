@@ -1,9 +1,10 @@
 import 'package:aura/features/emotions/domain/repositories/emotion_repository.dart';
 import 'package:aura/features/emotions/domain/usecases/get_emotions_options.dart';
+import 'package:aura/features/emotions/domain/usecases/insert_emotion.dart';
 import 'package:aura/features/emotions/presentation/provider/emotions_ui_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:aura/features/emotions/data/datasources/emotions_local_datasource.dart';
-import 'package:aura/features/emotions/data/repositories/emotions_repository.dart';
+import 'package:aura/features/emotions/data/repositories/emotion_repository_impl.dart';
 import 'package:aura/features/emotions/domain/usecases/get_emotions.dart';
 import 'package:aura/core/db/dao/emotion_dao.dart';
 import 'package:provider/single_child_widget.dart';
@@ -31,6 +32,11 @@ List<SingleChildWidget> createEmotionsProviders() {
     ),
     Provider<GetEmocionesOpciones>(
       create: (context) => GetEmocionesOpciones(
+        Provider.of<EmocionesRepository>(context, listen: false),
+      ),
+    ),
+    Provider<InsertEmocion>(
+      create: (context) => InsertEmocion(
         Provider.of<EmocionesRepository>(context, listen: false),
       ),
     ),

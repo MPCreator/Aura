@@ -32,6 +32,9 @@ class EmocionesScreen extends StatelessWidget {
       ),
       body: Consumer<EmocionesProvider>(
         builder: (context, emocionesProvider, child) {
+          if (emocionesProvider.emocionSeleccionada == null) {
+            return const Center(child: CircularProgressIndicator());
+          }
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

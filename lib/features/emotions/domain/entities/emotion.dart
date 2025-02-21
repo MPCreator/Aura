@@ -1,5 +1,3 @@
-// domain/entities/emocion.dart
-
 class Emocion {
   final int? idEmocion;
   final int idUsuario;
