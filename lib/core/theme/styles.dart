@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart'; // Asegúrate de tener una clase AppColors con los colores definidos
+import 'app_colors.dart';
 
 class AppTextStyles {
-  // Estilos de texto para los títulos, subtítulos y cuerpo de la aplicación
   static const TextStyle headline1 = TextStyle(
     fontSize: 32.0,
     fontWeight: FontWeight.bold,
-    color: AppColors.textPrimary, // Color principal de texto
+    color: AppColors.textPrimary,
   );
 
   static const TextStyle headline2 = TextStyle(
@@ -18,7 +17,7 @@ class AppTextStyles {
   static const TextStyle subtitle1 = TextStyle(
     fontSize: 20.0,
     fontWeight: FontWeight.w500,
-    color: AppColors.textSecondary, // Color de subtítulos
+    color: AppColors.textSecondary,
   );
 
   static const TextStyle bodyText1 = TextStyle(
@@ -36,18 +35,17 @@ class AppTextStyles {
   static const TextStyle buttonText = TextStyle(
     fontSize: 16.0,
     fontWeight: FontWeight.bold,
-    color: Colors.white, // Texto en botones
+    color: Colors.white,
   );
 
   static const TextStyle caption = TextStyle(
     fontSize: 12.0,
     fontWeight: FontWeight.normal,
-    color: AppColors.textTertiary, // Color terciario para textos menores
+    color: AppColors.textTertiary,
   );
 }
 
 class AppBorders {
-  // Bordes reutilizables
   static const BorderRadius smallBorderRadius =
       BorderRadius.all(Radius.circular(8.0));
   static const BorderRadius mediumBorderRadius =
@@ -55,38 +53,35 @@ class AppBorders {
   static const BorderRadius largeBorderRadius =
       BorderRadius.all(Radius.circular(24.0));
 
-  // Bordes para contenedores o tarjetas
   static const BorderRadius cardBorderRadius =
       BorderRadius.all(Radius.circular(12.0));
 }
 
 class AppShadows {
-  // Sombras para elementos como botones, tarjetas o modales
   static const BoxShadow lightShadow = BoxShadow(
-    color: Color(0x29000000), // sombra ligera
+    color: Color(0x29000000),
     offset: Offset(0, 4),
     blurRadius: 6,
   );
 
   static const BoxShadow mediumShadow = BoxShadow(
-    color: Color(0x29000000), // sombra media
+    color: Color(0x29000000),
     offset: Offset(0, 6),
     blurRadius: 12,
   );
 
   static const BoxShadow heavyShadow = BoxShadow(
-    color: Color(0x29000000), // sombra fuerte
+    color: Color(0x29000000),
     offset: Offset(0, 8),
     blurRadius: 16,
   );
 }
 
 class AppButtonStyles {
-  // Estilo de botón principal
   static ButtonStyle primaryButtonStyle(BuildContext context) {
     return ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
-      backgroundColor: AppColors.primaryColor, // Color del texto
+      backgroundColor: AppColors.primaryColor,
       padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
       shape: RoundedRectangleBorder(
         borderRadius: AppBorders.mediumBorderRadius,
@@ -94,11 +89,10 @@ class AppButtonStyles {
     );
   }
 
-  // Estilo de botón secundario
   static ButtonStyle secondaryButtonStyle(BuildContext context) {
     return ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
-      backgroundColor: AppColors.secondaryColor, // Color del texto
+      backgroundColor: AppColors.secondaryColor,
       padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
       shape: RoundedRectangleBorder(
         borderRadius: AppBorders.mediumBorderRadius,
@@ -106,7 +100,6 @@ class AppButtonStyles {
     );
   }
 
-  // Estilo de botón con icono
   static ButtonStyle iconButtonStyle(BuildContext context) {
     return ElevatedButton.styleFrom(
       foregroundColor: Colors.white,
@@ -120,7 +113,6 @@ class AppButtonStyles {
 }
 
 class AppSpacing {
-  // Espaciado para márgenes y paddings
   static const EdgeInsetsGeometry smallPadding = EdgeInsets.all(8.0);
   static const EdgeInsetsGeometry mediumPadding = EdgeInsets.all(16.0);
   static const EdgeInsetsGeometry largePadding = EdgeInsets.all(24.0);
@@ -137,7 +129,6 @@ class AppSpacing {
 }
 
 class AppGradients {
-  // Gradientes personalizados para diferentes estados emocionales o fondos
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [AppColors.primaryColor, AppColors.secondaryColor],
     begin: Alignment.topLeft,

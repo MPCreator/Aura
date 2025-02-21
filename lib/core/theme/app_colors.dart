@@ -52,5 +52,5 @@ class AppColors {
 
   // Colores de iconos
   static const Color iconColor =
-      Color(0xFF4B4B4B); // Color de iconos principales
+      AppColors.primaryColor; // Color de iconos principales
 }

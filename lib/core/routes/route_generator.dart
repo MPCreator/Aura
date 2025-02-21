@@ -1,3 +1,6 @@
+import 'package:aura/features/emotions/presentation/screens/emotion_detail_screen.dart';
+import 'package:aura/features/emotions/presentation/screens/emotion_screen.dart';
+import 'package:aura/shared/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
 
@@ -7,12 +10,16 @@ class RouteGenerator {
 
     switch (settings.name) {
       case AppRoutes.home:
-      //return MaterialPageRoute(builder: (_) => HomeScreen());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       case AppRoutes.login:
       //return MaterialPageRoute(builder: (_) => LoginScreen());
-      case AppRoutes.details:
+      case AppRoutes.emotionSelector:
+        return MaterialPageRoute(builder: (_) => EmocionesScreen());
+      case AppRoutes.emotionDetail:
         if (args is String) {
-          //return MaterialPageRoute(builder: (_) => DetailsScreen(data: args),);
+          return MaterialPageRoute(
+            builder: (_) => EmocionDetalleScreen(emocion: args),
+          );
         }
         return _errorRoute();
       default:
