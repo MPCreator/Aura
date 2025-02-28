@@ -17,6 +17,11 @@ class DiarioDao {
         .query('Diario', where: 'id_usuario = ?', whereArgs: [idUsuario]);
   }
 
+  Future<List<Map<String, dynamic>>> getDiarioById(int id) async {
+    final db = await AppDatabase().database;
+    return await db.query('Diario', where: 'id = ?', whereArgs: [id]);
+  }
+
   Future<int> updateDiario(int idDiario, Map<String, dynamic> diario) async {
     final db = await AppDatabase().database;
     return await db.update(

@@ -15,15 +15,21 @@ class DiarioRepositoryImpl implements DiarioRepository {
   }
 
   @override
-  Future<List<Diario>> getDiarioByUserId(int idUsuario) async {
+  Future<List<Diario>> getDiariosByUserId(int idUsuario) async {
     final result = await diarioLocalDataSource.getDiarioByUserId(idUsuario);
     return result.map((e) => e.toDomain()).toList();
   }
 
   @override
-  Future<void> insertDiario(Diario diario) async {
+  Future<List<Diario>> getDiarioById(int id) async {
+    final result = await diarioLocalDataSource.getDiarioById(id);
+    return result.map((e) => e.toDomain()).toList();
+  }
+
+  @override
+  Future<int> insertDiario(Diario diario) async {
     final diarioModel = DiarioModel.fromDomain(diario);
-    await diarioLocalDataSource.insertDiario(diarioModel);
+    return await diarioLocalDataSource.insertDiario(diarioModel);
   }
 
   @override

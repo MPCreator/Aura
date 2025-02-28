@@ -6,12 +6,12 @@ class ArchivoDiarioDao {
     return await db.insert('ArchivosDiario', archivosDiario);
   }
 
-  Future<List<Map<String, dynamic>>> getAllArchivosDiarios() async {
+  Future<List<Map<String, dynamic>>> getAllArchivosDiario() async {
     final db = await AppDatabase().database;
     return await db.query('ArchivosDiario');
   }
 
-  Future<List<Map<String, dynamic>>> getArchivosDiariosByUserId(
+  Future<List<Map<String, dynamic>>> getArchivosDiarioByUserId(
       int idUsuario) async {
     final db = await AppDatabase().database;
     return await db.query('ArchivosDiario',

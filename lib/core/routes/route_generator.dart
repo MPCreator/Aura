@@ -1,5 +1,7 @@
 import 'package:aura/features/emotions/presentation/screens/emotion_detail_screen.dart';
 import 'package:aura/features/emotions/presentation/screens/emotion_screen.dart';
+import 'package:aura/features/journal/presentation/screens/journal_entry_screen.dart';
+import 'package:aura/features/journal/presentation/screens/journal_list_screen.dart';
 import 'package:aura/shared/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
@@ -22,6 +24,10 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
+      case AppRoutes.journalEntry:
+        return MaterialPageRoute(builder: (_) => EntradaDiarioScreen());
+      case AppRoutes.journalList:
+        return MaterialPageRoute(builder: (_) => ListaDiarioScreen());
       default:
         return _errorRoute();
     }

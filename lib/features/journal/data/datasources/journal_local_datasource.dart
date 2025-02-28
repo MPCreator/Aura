@@ -4,6 +4,7 @@ import 'package:aura/features/journal/data/models/journal_model.dart';
 abstract class DiarioLocalDataSource {
   Future<List<DiarioModel>> getAllDiarios();
   Future<List<DiarioModel>> getDiarioByUserId(int idUsuario);
+  Future<List<DiarioModel>> getDiarioById(int id);
   Future<int> insertDiario(DiarioModel diario);
   Future<int> updateDiario(DiarioModel diario);
   Future<int> deleteDiario(int idDiario);
@@ -23,6 +24,12 @@ class DiarioLocalDataSourceImpl implements DiarioLocalDataSource {
   @override
   Future<List<DiarioModel>> getDiarioByUserId(int idUsuario) async {
     final result = await diarioDao.getDiariosByUserId(idUsuario);
+    return result.map((e) => DiarioModel.fromMap(e)).toList();
+  }
+
+  @override
+  Future<List<DiarioModel>> getDiarioById(int id) async {
+    final result = await diarioDao.getDiarioById(id);
     return result.map((e) => DiarioModel.fromMap(e)).toList();
   }
 

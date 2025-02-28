@@ -1,12 +1,31 @@
+import 'package:aura/core/routes/app_routes.dart';
+import 'package:aura/features/journal/presentation/provider/journals_ui_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:aura/core/theme/app_colors.dart';
 import 'package:aura/core/theme/dimensions.dart';
+import 'package:provider/provider.dart';
 import 'widgets/header_section.dart';
 import 'widgets/journal_section.dart';
 import 'widgets/mood_section.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final int userId = 1;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<DiarioProvider>(context, listen: false)
+          .fetchDiariosByUser(userId);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +82,9 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: FloatingActionButton(
                   backgroundColor: AppColors.primaryColor,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.journalEntry);
+                  },
                   shape: CircleBorder(),
                   child: Icon(
                     Icons.add,
